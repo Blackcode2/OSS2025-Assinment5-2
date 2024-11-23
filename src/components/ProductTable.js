@@ -1,4 +1,5 @@
 import React from "react";
+import "./ProductTable.css";
 
 const ProductTable = ({
   products,

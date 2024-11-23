@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import ProductForm from "../components/ProductForm";
+import "./PageStyles.css";
 
 const CreatePage = () => {
   const navigate = useNavigate();
@@ -69,7 +70,7 @@ const CreatePage = () => {
   };
 
   return (
-    <div>
+    <div className="page-container">
       <ProductForm
         formData={formData}
         handleInputChange={handleInputChange}

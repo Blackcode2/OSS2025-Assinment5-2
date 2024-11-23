@@ -1,4 +1,5 @@
 import React from "react";
+import "./ProductForm.css";
 
 const ProductForm = ({
   formData,

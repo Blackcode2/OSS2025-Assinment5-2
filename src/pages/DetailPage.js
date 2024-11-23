@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import "./PageStyles.css";
 
 const DetailPage = () => {
   const location = useLocation(); // Get location to access state
@@ -14,7 +15,7 @@ const DetailPage = () => {
   }
 
   return (
-    <div>
+    <div className="page-container">
       <h1>Product Details</h1>
       <table className="table">
         <tbody>

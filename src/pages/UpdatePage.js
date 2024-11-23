@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import ProductForm from "../components/ProductForm";
+import "./PageStyles.css";
 
 const UpdatePage = () => {
   const { state: product } = useLocation();
@@ -59,7 +60,7 @@ const UpdatePage = () => {
   //   };
 
   return (
-    <div>
+    <div className="page-container">
       <ProductForm
         formData={formData}
         handleInputChange={handleInputChange}

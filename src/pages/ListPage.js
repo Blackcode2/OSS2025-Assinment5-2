@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductTable from "../components/ProductTable";
 import { useNavigate } from "react-router-dom";
+import "./PageStyles.css";
 
 const ListPage = () => {
   const [products, setProducts] = useState([]);
@@ -39,7 +40,7 @@ const ListPage = () => {
   };
 
   return (
-    <div>
+    <div className="page-container">
       <button className="btn btn-primary" onClick={() => navigate("/create")}>
         Add Product
       </button>
