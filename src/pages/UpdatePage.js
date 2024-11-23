@@ -7,12 +7,34 @@ const UpdatePage = () => {
   const { state: product } = useLocation();
   const [formData, setFormData] = useState(product);
   const [changeCount, setChangeCount] = useState(0);
-  //console.log(product);
 
+  // Refs for input fields
   const categoryRef = useRef();
   const productRef = useRef();
   const priceRef = useRef();
   const quantityRef = useRef();
+
+  const validateInputs = () => {
+    const { category, product, price, quantity } = formData;
+
+    if (category === "Open this select menu") {
+      categoryRef.current.focus();
+      return false;
+    }
+    if (!product.trim()) {
+      productRef.current.focus();
+      return false;
+    }
+    if (!/^\d+(\.\d{1,2})?$/.test(price) || parseFloat(price) <= 0) {
+      priceRef.current.focus();
+      return false;
+    }
+    if (!/^\d+$/.test(quantity) || parseInt(quantity) <= 0) {
+      quantityRef.current.focus();
+      return false;
+    }
+    return true;
+  };
 
   const handleInputChange = async (e) => {
     const { name, value } = e.target;
@@ -21,43 +43,28 @@ const UpdatePage = () => {
     setFormData(updatedData);
     setChangeCount((prev) => prev + 1);
 
-    const url = `https://672887f6270bd0b97555fbea.mockapi.io/proudct/${product.id}`;
+    if (!validateInputs()) {
+      console.log(`Validation failed for ${name}.`);
+      return; // Prevent API call if validation fails
+    }
+
+    const url = `https://672887f6270bd0b97555fbea.mockapi.io/proudct/${formData.id}`;
     try {
-      await fetch(url, {
+      const response = await fetch(url, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ [name]: value }),
+        body: JSON.stringify(updatedData),
       });
+
+      if (response.ok) {
+        console.log(`Field '${name}' updated successfully.`);
+      } else {
+        console.log(`Failed to update field '${name}'.`);
+      }
     } catch (error) {
-      console.error("Error updating product:", error);
+      console.error(`Error updating field '${name}':`, error);
     }
   };
-
-  //   const validateInputs = () => {
-  //     const { category, product, price, quantity } = formData;
-
-  //     if (category === "Open this select menu") {
-  //       categoryRef.current.focus();
-  //       alert("Please select a valid category.");
-  //       return false;
-  //     }
-  //     if (!product) {
-  //       productRef.current.focus();
-  //       alert("Product name cannot be empty.");
-  //       return false;
-  //     }
-  //     if (!/^\d+(\.\d{1,2})?$/.test(price) || parseFloat(price) <= 0) {
-  //       priceRef.current.focus();
-  //       alert("Price must be a positive number with up to 2 decimal places.");
-  //       return false;
-  //     }
-  //     if (!/^\d+$/.test(quantity) || parseInt(quantity) <= 0) {
-  //       quantityRef.current.focus();
-  //       alert("Quantity must be a positive integer.");
-  //       return false;
-  //     }
-  //     return true;
-  //   };
 
   return (
     <div className="page-container">
