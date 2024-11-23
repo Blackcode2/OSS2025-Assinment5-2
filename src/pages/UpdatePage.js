@@ -32,31 +32,31 @@ const UpdatePage = () => {
     }
   };
 
-  const validateInputs = () => {
-    const { category, product, price, quantity } = formData;
+  //   const validateInputs = () => {
+  //     const { category, product, price, quantity } = formData;
 
-    if (category === "Open this select menu") {
-      categoryRef.current.focus();
-      alert("Please select a valid category.");
-      return false;
-    }
-    if (!product) {
-      productRef.current.focus();
-      alert("Product name cannot be empty.");
-      return false;
-    }
-    if (!/^\d+(\.\d{1,2})?$/.test(price) || parseFloat(price) <= 0) {
-      priceRef.current.focus();
-      alert("Price must be a positive number with up to 2 decimal places.");
-      return false;
-    }
-    if (!/^\d+$/.test(quantity) || parseInt(quantity) <= 0) {
-      quantityRef.current.focus();
-      alert("Quantity must be a positive integer.");
-      return false;
-    }
-    return true;
-  };
+  //     if (category === "Open this select menu") {
+  //       categoryRef.current.focus();
+  //       alert("Please select a valid category.");
+  //       return false;
+  //     }
+  //     if (!product) {
+  //       productRef.current.focus();
+  //       alert("Product name cannot be empty.");
+  //       return false;
+  //     }
+  //     if (!/^\d+(\.\d{1,2})?$/.test(price) || parseFloat(price) <= 0) {
+  //       priceRef.current.focus();
+  //       alert("Price must be a positive number with up to 2 decimal places.");
+  //       return false;
+  //     }
+  //     if (!/^\d+$/.test(quantity) || parseInt(quantity) <= 0) {
+  //       quantityRef.current.focus();
+  //       alert("Quantity must be a positive integer.");
+  //       return false;
+  //     }
+  //     return true;
+  //   };
 
   return (
     <div>
